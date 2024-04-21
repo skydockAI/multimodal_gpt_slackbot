@@ -21,6 +21,7 @@ docker pull skydockai/multimodal_gpt_slackbot:latest
 ```
 
 Configure Environment Variables: Download the [config.env](https://github.com/skydockAI/multimodal_gpt_slackbot/blob/main/config.env) file and update the first three variables (**SLACK_SOCKET_TOKEN**, **SLACK_BOT_USER_TOKEN**, and **OPENAI_KEY**) with your Slack app tokens and OpenAI API key.
+(If you use Azure OpenAI instead of OpenAI, please see [this instruction](instruction_for_azure_openai.md))
 
 Run the Docker image:
 ```bash

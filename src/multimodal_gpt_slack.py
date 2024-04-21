@@ -1,6 +1,6 @@
 from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
-from openai import OpenAI
+from openai import OpenAI, AzureOpenAI
 import requests
 import os
 import json
@@ -9,7 +9,11 @@ from openai_utils import *
 
 SLACK_SOCKET_TOKEN = os.getenv("SLACK_SOCKET_TOKEN")
 SLACK_BOT_USER_TOKEN = os.getenv("SLACK_BOT_USER_TOKEN")
+
 OPENAI_KEY = os.getenv("OPENAI_KEY")
+AZURE_OPENAI_KEY = os.getenv("AZURE_OPENAI_KEY")
+AZURE_OPENAI_ENDPOINT = os.getenv("AZURE_OPENAI_ENDPOINT")
+AZURE_OPENAI_VERSION = os.getenv("AZURE_OPENAI_VERSION")
 
 WAITING_MESSAGE = os.getenv("WAITING_MESSAGE")
 SYSTEM_PROMPT = os.getenv("SYSTEM_PROMPT")
@@ -26,7 +30,15 @@ IMAGE_MODEL = os.getenv("IMAGE_MODEL")
 STT_MODEL = os.getenv("STT_MODEL")
 
 app = App(token = SLACK_BOT_USER_TOKEN)
-ai_client = OpenAI(api_key = OPENAI_KEY)
+if OPENAI_KEY:
+    print("Running with OpenAI")
+    ai_client = OpenAI(api_key=OPENAI_KEY)
+elif AZURE_OPENAI_KEY:
+    print("Running with Azure OpenAI")
+    ai_client = AzureOpenAI(api_key = AZURE_OPENAI_KEY, api_version=AZURE_OPENAI_VERSION, azure_endpoint=AZURE_OPENAI_ENDPOINT)
+else:
+    print("[ERROR] Missing both OPENAI_KEY and AZURE_OPENAI_KEY")
+    exit(1)
 
 tools = []
 if IMAGE_GENERATION_ENABLED:

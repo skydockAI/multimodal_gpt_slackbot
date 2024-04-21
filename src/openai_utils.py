@@ -1,6 +1,7 @@
 import base64
 import random
 import time
+from types import SimpleNamespace
 
 def get_gpt_response(ai_client, gpt_model, system_prompt, conversation_history, tools):
     prompt_structure = [{"role": "system", "content": system_prompt}]
@@ -15,7 +16,7 @@ def get_gpt_response(ai_client, gpt_model, system_prompt, conversation_history, 
         )
         return response.choices[0].message
     except Exception as e:
-        return f"[ERROR] Problem calling OpenAI API:\n {e}"
+        return SimpleNamespace(content=f"[ERROR] Problem calling OpenAI API:\n {e}")
 
 def generate_image(ai_client, image_model, input_text, size = "square"):
     if size == "portrait":

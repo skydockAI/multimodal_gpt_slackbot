@@ -15,41 +15,42 @@ Multimodal GPT Slackbot is a comprehensive Docker image designed to enable busin
 To run Multimodal GPT Slackbot, you can choose from several options:
 
 ### 1. Using the Pre-built Docker Image:
-Pull the Docker image:
+- Pull the Docker image:
 ```bash
 docker pull skydockai/multimodal_gpt_slackbot:latest
 ```
 
-Configure Environment Variables: Download the [config.env](https://github.com/skydockAI/multimodal_gpt_slackbot/blob/main/config.env) file and update the first three variables (**SLACK_SOCKET_TOKEN**, **SLACK_BOT_USER_TOKEN**, and **OPENAI_KEY**) with your Slack app tokens and OpenAI API key.
-(If you use Azure OpenAI instead of OpenAI, please see [this instruction](instruction_for_azure_openai.md))
+- Configure Environment Variables: Download the [config.env](https://github.com/skydockAI/multimodal_gpt_slackbot/blob/main/config.env) file and update the first three variables (**SLACK_SOCKET_TOKEN**, **SLACK_BOT_USER_TOKEN**, and **OPENAI_KEY**) with your Slack app tokens and OpenAI API key.
 
-Run the Docker image:
+  (**Note:** If you use Azure OpenAI instead of OpenAI, please see [this instruction](instruction_for_azure_openai.md))
+
+- Run the Docker image:
 ```bash
 docker run --env-file ./config.env multimodal_gpt_slackbot:latest
 ```
 
 ### 2. Building Your Own Docker Image:
-Clone the source code:
+- Clone the source code:
 ```bash
 git clone https://github.com/skydockAI/multimodal_gpt_slackbot.git
 ```
 
-Build the Docker image:
+- Build the Docker image:
 ```bash
 docker build -t multimodal_gpt_slackbot:latest .
 ```
 
-Configure and run: Follow the same steps as in the pre-built Docker image setup to configure your `config.env` and run the image.
+- Configure and run: Follow the same steps as in the pre-built Docker image setup to configure your `config.env` and run the image.
 
 ### 3. Using Docker Compose:
-Clone the source code:
+- Clone the source code:
 ```bash
 git clone https://github.com/skydockAI/multimodal_gpt_slackbot.git
 ```
 
-Configure environment variables: Update the `config.env` as described above.
+- Configure environment variables: Update the `config.env` as described above.
 
-Run with Docker Compose: 
+- Run with Docker Compose: 
 ```bash
 docker compose up
 ```
